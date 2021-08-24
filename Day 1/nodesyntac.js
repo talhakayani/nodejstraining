@@ -63,6 +63,16 @@ console.log(workingString.slice(-5));// return hairs
 
 console.log(workingString.slice(-5).toUpperCase().slice(-2));
 
+//String template;
+const detailObject = {
+    name: "Talha",
+    age: 15,
+    height: 5.11
+}
+console.log(`Name: ${detailObject.name}\nAge: ${detailObject.age}\nHeight: ${detailObject.height}`);
+
+
+
 // Conditions
 
 if(true){
@@ -131,3 +141,32 @@ var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\
 console.log(strongRegex.test(password));
 
 
+//error handling
+
+const checkForErros = 10;
+
+try{
+    if(checkForErros === 10) throw "number  is 2 digit";
+}catch(err){
+    console.log(err);
+}
+
+
+//working with object and this keyword
+
+const Person = {
+    name: "talha Kayani",
+    age: 23,
+    cnic: "37406-23333333-3",
+    height: 5.11,
+    weight: 85,
+    BMI: function(){
+        return this.weight/((0.3048 * this.height)*2);
+    },
+    
+    //another way of writing funtion
+    //BMI: ()=> this.weight/(0.3048 * this.height)
+    
+}
+
+console.log(Person.BMI());
