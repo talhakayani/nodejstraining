@@ -154,7 +154,7 @@ try{
 
 //working with object and this keyword
 
-const Person = {
+const person = {
     name: "talha Kayani",
     age: 23,
     cnic: "37406-23333333-3",
@@ -169,4 +169,108 @@ const Person = {
     
 }
 
-console.log(Person.BMI());
+console.log(person.BMI());
+
+// Classes and objects 
+
+class Person{
+    constructor(name, age, height, weight,cnic){
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.cnic = cnic;
+    }
+
+    BMI () {4
+        return this.weight/(0.3048 * this.height);
+    }
+
+    display(){
+        console.log(`Name: ${this.name}\nCNIC: ${this.cnic}\nAge: ${this.age}`);
+    }
+};
+
+const p = new Person("Talha",23, 5.11, 85, "123123123123");
+console.log(p.BMI());
+p.display();
+
+//Inheritance
+class Vehical{
+    constructor(brand, year){
+        this._carBrand = brand;
+        this._modal = year;
+    }
+
+    get carBrand(){
+        return this._carBrand;
+    }
+    get modal(){
+        return this._modal;
+    }
+    
+    set carBrand(brand){
+        this._carBrand = brand;
+    }
+    set modal(year){
+        this._modal = year;
+    }
+
+    show(){
+        console.log(`Brand Name: ${this._carBrand}\nModal: ${this._modal}`);
+    }
+
+}
+
+class Car extends Vehical{
+    constructor(brandName, modal, speed){
+        super(brandName, modal);
+        this._speed = speed;
+    }
+    get speed(){
+        return this._speed;
+    }
+    set speed(s){
+        this._speed = s; 
+    }
+    show(){
+        super.show();
+        console.log(`Speed: ${this._speed}`);
+    }
+
+    static calculateAccelration(){ //this method is only called by class name itself not by the object
+        return 200;
+    }
+}
+
+const honda =new  Car("Honda",2007,140);
+honda.show();
+console.log(Car.calculateAccelration()); // Static method is called here by the class name itself
+
+
+
+//  Callbacks;
+// when a function is passed to a function is called callback for that function;
+function display(result) {
+    console.log(result)
+}
+function calculator(a1, b1, thisCallBack){
+    const result = a1+b1;
+    thisCallBack(result);
+}
+
+calculator(1,2, display);
+
+/// Asynchronous 
+function processing() {
+    console.log("process done!");
+}
+console.log("Please wait for 3 sec");
+setTimeout(processing, 2000); 
+
+/*In the real world, callbacks are most often used with asynchronous functions.
+
+A typical example is JavaScript setTimeout().
+*/
+console.log("Other lines or functions are executing simultaneously");
+
