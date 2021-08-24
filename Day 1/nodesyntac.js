@@ -39,3 +39,95 @@ console.log(scopeVariableLet); // value is 200
 //Strings;
 //Concatination
 console.log(nameEs5 + nameEs6);
+
+//String can be object
+let str = "talha";
+let strObject = new String("talha");
+
+console.log(str == strObject ) // result will be true;
+console.log(str === strObject) // result will be false, different types (sting === object)
+
+// comparison of 2 objects will be false
+
+
+//String methods
+//Length 
+workingString = "Some people have curly brown hairs";
+console.log(workingString.length);
+console.log(workingString.slice(5,11)); //return "people" if you want specific portion from string
+console.log(workingString.slice(5)); // return remaining part from 5; index is 0-based
+//slice also accept negative values;
+console.log(workingString.slice(-5));// return hairs
+
+// we also apply function on function if function returns something;
+
+console.log(workingString.slice(-5).toUpperCase().slice(-2));
+
+// Conditions
+
+if(true){
+    console.log("condition true");
+}
+if(false){
+
+}else{
+    console.log("1st Condition false");
+}
+
+switch(1){
+    case 2:
+        console.log(2);
+        break;
+    case 1:
+        console.log(1);
+        break;
+    default:
+        console.log("default");
+}
+
+(10 < 20)? console.log("10 is less than 20"): console.log("10 is not less than 20");
+
+
+// loops
+ 
+for(let i = 0 ; i<3 ;i++){
+    console.log(i);
+}
+
+//Using for-of;
+const arrNumbers = [1,2,3,4,5,6,7];
+for(const s of arrNumbers){
+    if(s === 2) continue;
+    console.log(s);
+
+}
+
+// Using for-in loop;
+
+let object = { name: "talha", age : 20, height: 5.11};
+for( const obj in object){
+    console.log(obj,object[obj]);
+}
+//it also work on string array or every itrateable object or variable;
+let resultForIn = [];
+for(const w in workingString){
+    resultForIn.push(workingString[w]);
+}
+console.log(resultForIn);
+
+
+//Regluar expression
+
+const dummyString = "welcome to InvoZone!";
+
+console.log(dummyString.search("welcome")); 
+console.log(dummyString.search(/welcome/i)) //'i' case sensitive search
+console.log(dummyString.search(/o/g)); //reteurns the  number of occurance 
+
+// password Strength using regular expression:
+
+const password = "tal.kay#12%G.mail@com";
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+console.log(strongRegex.test(password));
+
+
