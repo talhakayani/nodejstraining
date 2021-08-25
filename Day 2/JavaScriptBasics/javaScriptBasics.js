@@ -28,3 +28,24 @@ let obj = {name: "talha"}
 let obj2 = obj;
 obj.name = "usman";
 console.log(obj.name === obj2.name); // this will returns true because the values are same
+
+
+
+//Declarative Programming and Imperative Programming
+//Imperative Programming
+let num1, num2;
+num1 = 10;
+num2 = 20;
+const result = num1 + num2;
+console.log(result);
+
+//Declarative Programming
+const num1_ = 10, num2_ = 20;
+console.log(num1_+num2_);
+
+
+//Higher order function
+const display = (name, age, salary) => { return {name:name, age: age, salary: salary}};
+const details = (name, age, salary) => display(name,age,salary);
+console.log(details("talha",23,15000));
+//it always returns a function 
