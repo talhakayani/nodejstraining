@@ -1,4 +1,4 @@
-//importing code module
+//importing core module
 const fileSystem = require('fs');
 const data = {
     name: "Talha Kayani",
