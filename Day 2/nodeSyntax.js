@@ -39,7 +39,6 @@ console.log(validator.isEmail('talha.kayani@example.com'));
 console.log(validator.isURL('googlecom'));
 
 
-
 //Asyncnronous node.js promises
 /*
     promises are used when we face the callback hell issue 
@@ -76,3 +75,96 @@ let myFirstPromise = new Promise((resolve, reject) => {
     console.log("Yay! " + successMessage)
   }).catch((errorMessage) => console.log("ops" + errorMessage));
   
+
+  //calling multiple promisses in parallel
+  const task1 = false;
+  const task2 = false;
+  const task3 = true;
+  const taskOnePromis = new Promise(
+      (resolve, reject) => {
+          setTimeout(() => {
+               task1 ? resolve('task 1 completed') : reject("task 1 fails");
+          }, 1000);
+         
+      }
+  );
+  const taskTwoPromis = new Promise(
+    (resolve, reject) => {
+        setTimeout(() => {
+            task2 ? resolve('task 2 completed') : reject("task 2 fails");
+        }, 2000);
+    }
+    );
+    const taskThreePromis = new Promise(
+        (resolve, reject) => {
+           setTimeout(() => {
+                task3 ? resolve('task 3 completed') : reject("task 3 fails");
+           }, 500);
+        }
+    );  
+    // Execute all promises without waiting for any of the promise to be completed 
+    // if any of the promise is failed then it  will not execute remaining 
+    // for removing this issue we use a function from promise which is allSettled
+    Promise.all([taskOnePromis,taskTwoPromis, taskThreePromis]).then(
+        (messages)=> console.log(...messages)
+    ).catch(
+        (messages) => console.log (messages)
+    );
+    /// this will execute and return the first promice when success or fails
+   Promise.race([taskOnePromis,taskTwoPromis, taskThreePromis]).then(
+        (message)=> console.log(message)
+    ).catch(
+        (message) => console.log(message)
+    )
+
+   /* // it is not available in the version which we are using node version(10.16.0):
+   Promise.allSettled([taskTwoPromis,taskOnePromis, taskThreePromis]).then(
+        (message) => console.log(message)
+    ).catch((message)=> console.log(message));
+*/
+
+// async await 
+/*these are usefull if we are working with asyncronous functions 
+    it returns pomise and it will be handeled same as  normal promise
+ syntax */
+    const hello = async function() {
+        return 'here is somthing happeining';
+    }
+
+    hello().then((message) => console.log(message));
+/*
+the above code is just letting me know about the async 
+now let's start working on the await 
+await is basically used in async function which helps us to maintain the sequance of the 
+function calling like if we want to wait for any function to be executed first we will use async 
+along with the await :) 
+*/
+const welcome = async (user) =>{
+    return await Promise.resolve("welcome, "+ user );
+}
+
+welcome("talha kayani").then(console.log);
+
+//Now  implement async and await with practical example!
+// reading from the test.json file and display that data 
+
+
+const readDataFromFile = async function() {
+    
+    try{
+        const datas = await fileSystem.readFileSync("test2.json");
+        if(datas) throw new Error("something went wrong");
+        else return JSON.parse(datas); 
+    }catch(err){
+        throw new Error(err)
+    }
+}
+
+readDataFromFile().then(console.log).catch((err)=> console.log('error catched: '+err));
+
+/* 
+in above practical example we are waiting for the file to read the content of the file 
+once we read the information then it returns the result as promise and we get the data
+I also handling the errors in this :)  
+
+*/
